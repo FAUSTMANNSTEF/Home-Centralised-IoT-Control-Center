@@ -6,6 +6,7 @@ class KasaLight(Light):
 
     def __init__(self, device):
         self.device = device
+        self.id = device.alias  # id is the Name of the Lamp in the network
 
     async def turn_on(self):
         await self.device.turn_on()
