@@ -1,6 +1,7 @@
 # Central Point for discovering devices in a network
 from kasa import Discover
 from devices.tp_link.kasa_light import KasaLight
+from devices.phillips_hue.phillips_hue import HueLight
 
 """
 Device discovery and management layer.
@@ -34,5 +35,15 @@ class DeviceManager:
             self.devices[device.alias] = adapter
             print(self.devices)
 
+    # finds Hue Lights and wraps them in appropriate adapter
+    async def find_hue_lights(self, bridge_ip, username):
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(f"http://{bridge_ip}/api/{username}/lights")
+            lights = resp.json()
+            for light_id, info in lights.items():
+                adapter = HueLight(bridge_ip, username, light_id)
+                self.devices[info["name"]] = adapter
+
     async def discover_devices(self):
         await self.find_tp_devices()
+        await self.find_hue_lights()
