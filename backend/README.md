@@ -60,7 +60,10 @@ v
 
 ## Future Possible Improvements
 
+- Add Pytest
 - Add **error handling** for unreachable/offline devices.
+- Add a **refresh/discover endpoint** to detect and add new devices dynamically while
+  the server is running.(kind of solves a big part of the error handling)
 - Implement a **list all devices** endpoint (`GET /devices`) so the frontend can dynamically display all devices.
 - Add a **refresh/discover endpoint** to detect and add new devices dynamically while the server is running.(kind of solves a big part of the error handling)
 - Device authentication with IOTA
@@ -68,3 +71,7 @@ v
 - Optional: implement **logging** and **metrics** to monitor device activity and failures.
 - Implement LogIn
 - At scheduled triggers example at 12:00 everything turns off etc
+- DeviceManager (core)
+  -> TPLinkManager
+  -> HueManager
+  -> IkeaManager
