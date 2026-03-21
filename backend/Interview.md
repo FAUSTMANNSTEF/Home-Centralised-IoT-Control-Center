@@ -1,4 +1,10 @@
-## what is encapsulation inheritance polymorhism
+## what is encapsulation inheritance polymorhism Dependency Inversion
+
+“I separated abstractions, vendor adapters, and orchestration so that adding a new device type or brand never impacts the API or existing logic.”
+
+### In Device why not add functionality methods ? because this is to see how i want to show stuff to the front end , not all devices share the same functionality
+
+## Used a Dictionary in device.py
 
 ## Problem: Dynamic Device Availability
 
@@ -35,3 +41,12 @@ In a home IoT system, devices can go offline or be added at any time:
 - Wrap all hardware commands in `try/except` to catch offline errors  
   **Pros:** Backend never crashes, provides meaningful HTTP errors  
   **Cons:** Doesn’t proactively know offline devices
+
+What is Uvicorn
+
+Regarding Github action pipeline
+flake & ruff for linting
+What is requirements.txt i used pipreqs for it when should i use it
+requirements.txt vs requirements-dev.txt
+
+.github file what does it do, Yaml files what do they do , how is this a pipeline
