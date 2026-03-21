@@ -49,4 +49,4 @@ flake & ruff for linting
 What is requirements.txt i used pipreqs for it when should i use it
 requirements.txt vs requirements-dev.txt
 
-.github file what does it do, Yaml files what do they do , how is this a pipeline
+.github file what does it do, Yaml files what do they do , how is this a pipeline requirements .txt shows the packages in the project right what does requirements . dev do ?
