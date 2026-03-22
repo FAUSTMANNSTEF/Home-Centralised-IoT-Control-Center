@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException, Request
 
+
 router = APIRouter(prefix="/lights", tags=["lights"])
 
 
