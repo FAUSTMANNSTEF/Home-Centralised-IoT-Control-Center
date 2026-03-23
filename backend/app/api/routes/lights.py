@@ -76,4 +76,4 @@ async def get_lights(request: Request):
     if lights:
         return lights
     else:
-        raise HTTPException(status_code=404, detail=f"No lights found")
+        raise HTTPException(status_code=404, detail="No lights found")
