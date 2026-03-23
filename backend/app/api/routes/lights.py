@@ -1,4 +1,5 @@
 from fastapi import APIRouter, HTTPException, Request
+from devices.base.light import Light
 
 router = APIRouter(prefix="/lights", tags=["lights"])
 
@@ -65,3 +66,14 @@ async def get_state(light_id: str, request: Request):
         )
 
     return {"id": light_id, "state": state}
+
+
+# Returns all lights currently connected to home center lamps
+@router.get("")
+async def get_lights(request: Request):
+    manager = request.app.state.device_manager
+    lights = manager.get_devices(Light)
+    if lights:
+        return lights
+    else:
+        raise HTTPException(status_code=404, detail=f"No lights found")
