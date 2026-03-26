@@ -1,3 +1,4 @@
+# Runs ruff for linting and builds a docker image
 name: CI
 on: [push, pull_request]
 jobs:

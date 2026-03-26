@@ -1,4 +1,4 @@
-# Note: Pi must be reachable on the local network — only deploy from home
+# Note: PI must be reachable on the local network only push code  from home
 name: CD
 on:
   push:
