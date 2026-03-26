@@ -1,0 +1,21 @@
+# Note: PI must be reachable on the local network only push code  from home due to ssh config on PI
+name: CD
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Raspberry Pi
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.PI_HOST }}
+          username: ${{ secrets.PI_USER }}
+          password: ${{ secrets.PI_PASSWORD }}
+          script: |
+            cd ~/Home-Centralised-IoT-Control-Center
+            git pull origin main
+            docker compose up --build -d
