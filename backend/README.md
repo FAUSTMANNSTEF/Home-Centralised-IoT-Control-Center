@@ -28,6 +28,7 @@ docker run --network host iot-app
 - Added **specific API route paths** to make the backend scalable, avoiding having everything in `main`.
 - Used **Adapters** to make it easy to support devices with different APIs (e.g., Kasa, Hue, etc.).
 - Implemented a **DeviceManager** to handle network calls and wrap all discovered devices into their corresponding adapters.
+- Define a common API shape HuePhillips Kasa different response objects so i extract and put it in a format the frontend can understand
 
 ---
 
@@ -76,8 +77,11 @@ v
 ## Future Possible Improvements
 
 - Add **error handling** for unreachable/offline devices.
+- Catch hardware exceptions inside adapters
 - Implement a **list all devices** endpoint (`GET /devices`) so the frontend can dynamically display all devices.
 - Add a **refresh/discover endpoint** to detect and add new devices dynamically while the server is running.(kind of solves a big part of the error handling)
+- Scheduling and Groups/rooms
+- Device authentication with IOTA
 - Support **more device types** (e.g., plugs, sensors) using additional adapters and abstract base classes.
 - Optional: implement **logging** and **metrics** to monitor device activity and failures.
 - Implement LogIn

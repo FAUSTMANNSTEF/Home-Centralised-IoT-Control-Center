@@ -5,8 +5,12 @@ from devices.base.light import Light
 class KasaLight(Light):
 
     def __init__(self, device):
+        super().__init__(
+            id=device.alias,  # id is the Name of the Lamp in the network
+            name=device.alias,
+            vendor="tp-link",
+        )
         self.device = device
-        self.id = device.alias  # id is the Name of the Lamp in the network
 
     async def turn_on(self):
         await self.device.turn_on()
@@ -18,5 +22,9 @@ class KasaLight(Light):
         await self.device.set_brightness(level)
 
     async def get_state(self):
-        state = await self.device.update()
-        return state
+        await self.device.update()
+        return {
+            "on": self.device.is_on,
+            "brightness": self.device.brightness,
+            "reachable": True,
+        }
