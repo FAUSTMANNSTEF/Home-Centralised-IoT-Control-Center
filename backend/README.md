@@ -2,8 +2,24 @@
 
 ## Instructions
 
-- Navigate to app and run "uvicorn main:app --reload"
-- Endpoints have been tested using Postman
+-- Need to have docker installed
+
+### Option 1: Local (recommended for development / device control)
+
+Requires Python 3.11+ and a venv.
+
+```bash
+cd backend/app
+source ../venv/bin/activate
+uvicorn main:app --reload
+```
+
+### Option 2: Docker (Linux only — required for device discovery)
+
+```bash
+docker build -t iot-app .
+docker run --network host iot-app
+```
 
 ---
 
@@ -55,7 +71,6 @@ v
 
 ## Future TODOs
 
-- Test API endpoints using Postman
 - Auth using an API Key in router dependencies or router params in the backend even though its local maybe my friends would want to mess around
 
 ## Future Possible Improvements
@@ -63,8 +78,11 @@ v
 - Add **error handling** for unreachable/offline devices.
 - Implement a **list all devices** endpoint (`GET /devices`) so the frontend can dynamically display all devices.
 - Add a **refresh/discover endpoint** to detect and add new devices dynamically while the server is running.(kind of solves a big part of the error handling)
-- Device authentication with IOTA
 - Support **more device types** (e.g., plugs, sensors) using additional adapters and abstract base classes.
 - Optional: implement **logging** and **metrics** to monitor device activity and failures.
 - Implement LogIn
 - At scheduled triggers example at 12:00 everything turns off etc
+
+```
+
+```
