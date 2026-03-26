@@ -1,4 +1,4 @@
-# Note: PI must be reachable on the local network only push code  from home
+# Note: PI must be reachable on the local network only push code  from home due to ssh config on PI
 name: CD
 on:
   push:
