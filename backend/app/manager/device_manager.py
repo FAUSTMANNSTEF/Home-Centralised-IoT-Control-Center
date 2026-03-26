@@ -15,12 +15,21 @@ Responsible for:
 
 class DeviceManager:
 
+    # devices acts as a dictionary with key(name) value(Adaptor Object) pairs
     def __init__(self):
         self.devices = {}
 
     # Checks if device exists withing my network and returns it if it does
     def get_device(self, device_id: str):
         return self.devices.get(device_id)
+
+    # Gets all devices of a specific type (light,tv etc)
+    def get_devices(self, type: str):
+        devices = []
+        for device in self.devices.values():
+            if isinstance(device, type):
+                devices.append(device.to_dict())
+        return devices
 
     # finds tp devices and wraps them in appropriate adapter
     async def find_tp_devices(self):

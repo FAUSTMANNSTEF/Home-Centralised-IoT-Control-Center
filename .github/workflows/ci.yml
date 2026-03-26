@@ -1,0 +1,14 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  CIPipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull the code
+        uses: actions/checkout@v3
+      - name: Install ruff
+        run: pip install -r requirements-dev.txt
+      - name: Run ruff on my code
+        run: ruff check .
+      - name: Build Docker image
+        run: docker build -t iot-app .
