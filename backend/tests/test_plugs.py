@@ -45,7 +45,6 @@ class MockManager:
         ]
 
 
-# fixture resets the override before each test and clears it after
 # prevents test_lights.py MockManager from overwriting this one since both share the same app instance
 @pytest.fixture(autouse=True)
 def override_manager():
