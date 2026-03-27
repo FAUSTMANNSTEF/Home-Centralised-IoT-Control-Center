@@ -9,6 +9,7 @@ Responsible for:
 
 from kasa import Discover
 from devices.tp_link.kasa_light import KasaLight
+from devices.tp_link.kasa_plug import KasaPlug
 
 
 class DeviceManager:
@@ -37,6 +38,8 @@ class DeviceManager:
             # print(device.device_type)
             if device.device_type.name == "Bulb":
                 adapter = KasaLight(device)
+            elif device.device_type.name == "Plug":
+                adapter = KasaPlug(device)
             else:
                 continue  # add more TP-Link devices later
             self.devices[device.alias] = adapter

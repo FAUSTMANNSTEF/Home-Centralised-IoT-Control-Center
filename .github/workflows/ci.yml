@@ -1,4 +1,4 @@
-# Runs ruff for linting and builds a docker image on every push and pull_req
+# Runs ruff for linting, pytest and builds a docker image on every push and pull_req
 name: CI
 on: [push, pull_request]
 jobs:

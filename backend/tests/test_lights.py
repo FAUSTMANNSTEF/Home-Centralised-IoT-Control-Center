@@ -1,3 +1,4 @@
+import pytest
 from fastapi.testclient import TestClient
 from main import app
 from api.routes.lights import get_manager
@@ -44,10 +45,15 @@ class MockManager:
         ]
 
 
-app.dependency_overrides[get_manager] = (
-    lambda: MockManager()
-)  # Replace actual manager with mocked one
-client = TestClient(app)  # HTTP client testerß
+# prevents other testfile MockManager from overwriting this one since both share the same app instance
+@pytest.fixture(autouse=True)
+def override_manager():
+    app.dependency_overrides[get_manager] = lambda: MockManager()
+    yield
+    app.dependency_overrides.clear()
+
+
+client = TestClient(app)
 
 
 def test_turn_on_existing_light():
