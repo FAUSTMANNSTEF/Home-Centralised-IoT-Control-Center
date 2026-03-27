@@ -1,4 +1,4 @@
-# Runs ruff for linting and builds a docker image on every push and pull_req
+# Runs ruff for linting, pytest and builds a docker image on every push and pull_req
 name: CI
 on: [push, pull_request]
 jobs:
@@ -7,9 +7,13 @@ jobs:
     steps:
       - name: Pull the code
         uses: actions/checkout@v3
-      - name: Install ruff
-        run: pip install -r requirements-dev.txt
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
       - name: Run ruff on my code
         run: ruff check .
+      - name: Run pytest
+        run: pytest backend/tests/
       - name: Build Docker image
         run: docker build -t iot-app .

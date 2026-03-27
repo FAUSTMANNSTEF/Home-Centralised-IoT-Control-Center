@@ -2,11 +2,11 @@ from abc import ABC, abstractmethod
 from devices.base.device import Device
 
 
-class Light(Device, ABC):
-    """Abstract base class for all light devices. Any brand-specific light must implement these methods."""
+class Plug(Device, ABC):
+    """Abstract base class for all smart plugs. Any brand-specific plug must implement these methods."""
 
     def __init__(self, id: str, name: str, vendor: str):
-        super().__init__(id=id, name=name, device_type="light", vendor=vendor)
+        super().__init__(id=id, name=name, device_type="plug", vendor=vendor)
 
     @abstractmethod
     async def turn_on(self):
@@ -17,7 +17,7 @@ class Light(Device, ABC):
         pass
 
     @abstractmethod
-    async def set_brightness(self, level):
+    async def get_energy_usage(self):
         pass
 
     @abstractmethod
