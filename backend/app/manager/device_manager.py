@@ -1,7 +1,8 @@
-# Central Point for discovering devices in a network
+import httpx
 from kasa import Discover
 from devices.tp_link.kasa_light import KasaLight
-from devices.phillips_hue.phillips_hue import HueLight
+from devices.tp_link.kasa_plug import KasaPlug
+from devices.phillips_hue.phillips_hue_light import HueLight
 
 """
 Device discovery and management layer.
@@ -11,10 +12,6 @@ Responsible for:
 - Wrapping devices in brand-specific adapters
 - Providing a generic interface for retrieving devices
 """
-
-from kasa import Discover
-from devices.tp_link.kasa_light import KasaLight
-from devices.tp_link.kasa_plug import KasaPlug
 
 
 class DeviceManager:
