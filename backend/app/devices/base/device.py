@@ -3,6 +3,13 @@ from typing import Dict
 
 
 class Device(ABC):
+    """
+    Base contract for all devices regardless of brand or type.
+    Enforces that every device has a common identity (id, name, device_type, vendor)
+
+    Inheritance chain:
+        Device → Light → KasaLight (or any other brand-specific implementation)
+    """
 
     def __init__(
         self,

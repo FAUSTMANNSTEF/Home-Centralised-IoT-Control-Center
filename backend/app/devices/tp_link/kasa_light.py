@@ -1,12 +1,13 @@
 from devices.base.light import Light
 
 
-# KasaLight class wraper for tp_link SDK
 class KasaLight(Light):
+    """TP-Link Kasa adapter for a smart bulb."""
 
     def __init__(self, device):
+        """Initialises the adapter using the device alias as both id and name."""
         super().__init__(
-            id=device.alias,  # id is the Name of the Lamp in the network
+            id=device.alias,
             name=device.alias,
             vendor="tp-link",
         )
