@@ -1,3 +1,9 @@
+import httpx
+from kasa import Discover
+from devices.tp_link.kasa_light import KasaLight
+from devices.tp_link.kasa_plug import KasaPlug
+from devices.phillips_hue.phillips_hue_light import HueLight
+
 """
 Device discovery and management layer.
 
@@ -6,10 +12,6 @@ Responsible for:
 - Wrapping devices in brand-specific adapters
 - Providing a generic interface for retrieving devices
 """
-
-from kasa import Discover
-from devices.tp_link.kasa_light import KasaLight
-from devices.tp_link.kasa_plug import KasaPlug
 
 
 class DeviceManager:
@@ -45,6 +47,16 @@ class DeviceManager:
             self.devices[device.alias] = adapter
             # print(self.devices)
 
+    # finds Hue Lights and wraps them in appropriate adapter
+    async def find_hue_lights(self, bridge_ip, username):
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(f"http://{bridge_ip}/api/{username}/lights")
+            lights = resp.json()
+            for light_id, info in lights.items():
+                adapter = HueLight(bridge_ip, username, light_id)
+                self.devices[info["name"]] = adapter
+
     async def discover_devices(self):
         """Runs discovery across all supported brands"""
         await self.find_tp_devices()
+        await self.find_hue_lights()
